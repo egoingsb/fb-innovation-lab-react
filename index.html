@@ -4,14 +4,14 @@
         
         
         <script>
-            var title = 'WEB V';
-            var sub = 'world wide web!';
-            // 1억    
-            var headerTag = `
-            <header>
-                <h1><a href="index.html">${title}</a></h1>
-                ${sub}
-            </header>`;
+            function headerTag(title, sub){
+                return `
+                <header>
+                    <h1><a href="index.html">${title}</a></h1>
+                    ${sub}
+                </header>`;
+            }
+            
 
             var navTag = `
             <nav>
@@ -23,17 +23,20 @@
             </nav>
             `;
 
-            var articleTag = `
-                <article>
-                    <h2>Welcome</h2>
-                    Hello, WEB
-                </article>
-            `;
+            function articleTag(title, desc){
+                return `
+                    <article>
+                        <h2>${title}</h2>
+                        ${desc}
+                    </article>
+                `;
+            }
+            
 
             document.write(
-                headerTag+
+                headerTag('WEB', 'World Wide Web!!!')+
                 navTag+
-                articleTag
+                articleTag('Welcome', 'Hello, WEB')
             );
         </script>
 
