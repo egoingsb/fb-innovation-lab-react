@@ -1,22 +1,42 @@
 <html>
     <head></head>
     <body>
-        <header>
-            <h1><a href="index.html">WEB</a></h1>
-            World wide web!
-        </header>
+        
+        
+        <script>
+            var headerTag = `
+            <header>
+                <h1><a href="index.html">WEB</a></h1>
+                World wide web!
+            </header>`;
 
-        <nav>
-            <ol>
-                <li><a href="1.html">HTML</a></li>
-                <li><a href="2.html">CSS</a></li>
-                <li><a href="3.html">JavaScript</a></li>
-            </ol>
-        </nav>
+            var navTag = `
+            <nav>
+                <ol>
+                    <li><a href="1.html">HTML</a></li>
+                    <li><a href="2.html">CSS</a></li>
+                    <li><a href="3.html">JavaScript</a></li>
+                </ol>
+            </nav>
+            `;
 
-        <article>
-            <h2>Welcome</h2>
-            Hello, WEB
-        </article>
+            var articleTag = `
+                <article>
+                    <h2>Welcome</h2>
+                    Hello, WEB
+                </article>
+            `;
+
+            document.write(
+                headerTag+
+                navTag+
+                articleTag
+            );
+        </script>
+
+        
+
+        
+
     </body>
 </html>
