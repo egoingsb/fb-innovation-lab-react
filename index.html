@@ -38,11 +38,23 @@ function articleTag(title, desc){
     `;
 }
 
+var mode = 'welcome';
+
+var _articleTitle = '';
+var _articleDesc = '';
+if(mode === 'welcome'){
+    _articleTitle = 'Welcome';
+    _articleDesc = 'Hello, WEB';
+} else if(mode === 'read') {
+    _articleTitle = 'HTML';
+    _articleDesc = 'HTML is ....';    
+} 
+
 // id 값이 app인 태그에 내부에 다음 HTML 코드를 삽입해! 브라우져야!
 document.querySelector('#app').innerHTML = (
     headerTag('WEB', 'World Wide Web!!!')+
     navTag+
-    articleTag('Welcome', 'Hello, WEB')
+    articleTag(_articleTitle, _articleDesc)
 );
 </script>
 
