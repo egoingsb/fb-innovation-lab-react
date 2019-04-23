@@ -27,13 +27,14 @@ function navTag(data){
     while(i < data.length) {
         liTag = liTag + `
                 <li>
-                    <a href="1.html"
+                    <a href="${data[i].id}.html"
                         onclick="
                             mode = 'read';
+                            selected_id = ${data[i].id};
                             render();
                             event.preventDefault();
                         "
-                    >HTML</a>
+                    >${data[i].title}</a>
                 </li>
         `
         i = i + 1;
@@ -56,12 +57,13 @@ function articleTag(title, desc){
     `;
 }
 
-var mode = 'welcome';
+var mode = 'read';
 var contents = [
     {id:1, title:'html', desc:'HTML is ...'},
     {id:2, title:'css', desc:'CSS is ...'},
     {id:3, title:'javascript', desc:'JavaScript is ...'}
 ];
+var selected_id = 1;
 
 function render(){
     var _articleTitle = '';
@@ -70,8 +72,16 @@ function render(){
         _articleTitle = 'Welcome';
         _articleDesc = 'Hello, WEB';
     } else if(mode === 'read') {
-        _articleTitle = 'HTML';
-        _articleDesc = 'HTML is ....';    
+        var i = 0;
+        while(i < contents.length) {
+            if(selected_id === contents[i].id){
+                _articleTitle = contents[i].title;
+                _articleDesc = contents[i].desc;
+                break;
+            }
+            i = i + 1;
+        }
+            
     } 
     document.querySelector('#app').innerHTML = (
         headerTag('WEB', 'World Wide Web!!!')+
