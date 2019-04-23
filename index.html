@@ -20,10 +20,12 @@ function headerTag(title, sub){
     </header>`;
 }
 
-function navTag(){
-    return `
-        <nav>
-            <ol>
+function navTag(data){
+
+    var liTag = '';
+    var i = 0;
+    while(i < data.length) {
+        liTag = liTag + `
                 <li>
                     <a href="1.html"
                         onclick="
@@ -31,10 +33,15 @@ function navTag(){
                             render();
                             event.preventDefault();
                         "
-                    >HTML</a></li>
-                <li><a href="2.html">CSS</a></li>
-                <li><a href="3.html">JavaScript</a></li>
-            </ol>
+                    >HTML</a>
+                </li>
+        `
+        i = i + 1;
+    }
+
+    return `
+        <nav>
+            <ol>${liTag}</ol>
         </nav>
         `;
 }
@@ -68,7 +75,7 @@ function render(){
     } 
     document.querySelector('#app').innerHTML = (
         headerTag('WEB', 'World Wide Web!!!')+
-        navTag()+
+        navTag(contents)+
         articleTag(_articleTitle, _articleDesc)
     );
 }
