@@ -1,31 +1,48 @@
 <html>
     <body>
         <h1>Boolean & Comparison operator</h1>
-        <script>
-            console.log(true, false);
-            console.log('1 === 1', 1 === 1);
-            console.log('1 > 1', 1 > 1);
-            console.log('1 > 2', 2 > 1);
-        </script>
-        <h1>conditional statements</h1>
-        <script>
-            console.log('if 1');
-            if(false){
-                console.log('if 2');
-                console.log('if 3');
-            }
-            console.log('if 4');
-        </script>
-        <h1>Loop</h1>
-        <script>
-        console.log('while 1');
-        var i = 0;
-        while(i < 3){
-            console.log('while 2');
-            console.log('while 3');
-            i = i + 1;
-        }
-        console.log('while 4');
-        </script>
+<script>
+    console.log(true, false);
+    console.log('1 === 1', 1 === 1);
+    console.log('1 > 1', 1 > 1);
+    console.log('1 > 2', 2 > 1);
+</script>
+<h1>conditional statements</h1>
+<script>
+    console.log('if 1');
+    if(false){
+        console.log('if 2');
+        console.log('if 3');
+    }
+    console.log('if 4');
+</script>
+<h1>Loop</h1>
+<script>
+console.log('while 1');
+var i = 0;
+while(i < 3){
+    console.log('while 2');
+    console.log('while 3');
+    i = i + 1;
+}
+console.log('while 4');
+</script>
+<h1>Array</h1>
+<script>
+
+var member = ['egoing','duru'];
+console.log('memeber[2]', member[2]);
+member[1] = 'leezche';
+console.log('member.length', member.length);
+
+document.write('<ol>');
+var i = 0;
+while(i < member.length){
+    document.write(`<li>${member[i]}</li>`)
+    i = i + 1;
+}
+ 
+document.write('</ol>');
+</script>
     </body>
 </html>
