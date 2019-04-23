@@ -1,8 +1,7 @@
 <html>
     <head></head>
     <body>
-        
-        
+        <div id="app"></div>
 <script>
 function headerTag(title, sub){
     return `
@@ -39,8 +38,8 @@ function articleTag(title, desc){
     `;
 }
 
-
-document.write(
+// id 값이 app인 태그에 내부에 다음 HTML 코드를 삽입해! 브라우져야!
+document.querySelector('#app').innerHTML = (
     headerTag('WEB', 'World Wide Web!!!')+
     navTag+
     articleTag('Welcome', 'Hello, WEB')
