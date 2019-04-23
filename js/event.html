@@ -4,9 +4,15 @@
             var a = 1;
             var b = 2;
             function handler(e){
-                console.log(e.target, e.type);
+                if(e.target.tagName === 'A'){
+                    e.preventDefault();    
+                }
+                console.log(e.target.tagName, e, e.target, e.type);
             }    
         </script>
+        <a href="1.html" onclick="
+            handler(event);
+        ">don't move</a>
         <input 
             type="button" 
             value="hi"
