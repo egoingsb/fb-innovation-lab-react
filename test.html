@@ -1,0 +1,84 @@
+<html>
+    <body>
+        <div id="app"></div>
+        <script>
+
+function headerTag(_title, _sub){
+    return `
+    <header>
+        <h1><a href="/"
+            onclick="
+                mode = 'welcome';
+                render();
+                event.preventDefault();
+            "    
+        >${_title}</a></h1>
+        ${_sub}
+    </header>
+    `;
+}
+function navTag(_data){
+    var tag = '';
+    var i = 0;
+    while(i < _data.length){
+        tag = tag + `<li><a 
+            onclick="
+                mode = 'read';
+                selected_id = ${_data[i].id};
+                render();
+                event.preventDefault();
+            "
+            href="">${_data[i].title}</a></li>`;
+        i = i + 1;
+    }
+    return `
+    <nav>
+        <ol>
+            ${tag}
+        </ol>
+    </nav>
+    `;
+}
+function articleTag(_title, _desc){
+    return `
+    <article>
+        <h2>${_title}</h2>
+        ${_desc}
+    </article>
+    `;
+}
+
+var contents = [
+    {id:1, title:'html', desc:'html is'},
+    {id:2, title:'css', desc:'css is'}
+];
+var mode = 'read';
+var selected_id = 2;
+
+function render(){
+    var _aTitle, _aDesc = ''; 
+    if(mode === 'welcome'){
+        _aTitle = 'Welcome';
+        _aDesc = 'Hello, React';
+    } else if(mode === 'read') {
+
+        var i = 0;
+        while(i<contents.length){
+            if(contents[i].id === selected_id){
+                _aTitle = contents[i].title;
+                _aDesc = contents[i].desc;
+                break;
+            }
+            i = i + 1;
+        }
+    }
+
+    document.querySelector('#app').innerHTML = 
+        headerTag('WEB~', 'WWW')+
+        navTag(contents)+
+        articleTag(_aTitle, _aDesc)
+}
+render();
+        </script>
+    </body>
+</html>
