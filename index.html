@@ -10,8 +10,9 @@ function headerTag(title, sub){
             <a 
                 href="index.html"
                 onclick="
-                    mode = 'welcome';
-                    render();
+                    app.setState({
+                        mode:'welcome'
+                    })
                     event.preventDefault();
                 "
             >${title}</a>
@@ -29,9 +30,10 @@ function navTag(data){
                 <li>
                     <a href="${data[i].id}.html"
                         onclick="
-                            mode = 'read';
-                            selected_id = ${data[i].id};
-                            render();
+                            app.setState({
+                                mode:'read',
+                                selected_id:${data[i].id}
+                            });
                             event.preventDefault();
                         "
                     >${data[i].title}</a>
@@ -57,44 +59,48 @@ function articleTag(title, desc){
     `;
 }
 
-var mode = 'read';
-var contents = [
-    {id:1, title:'html', desc:'HTML is ...'},
-    {id:2, title:'css', desc:'CSS is ...'},
-    {id:3, title:'javascript', desc:'JavaScript is ...'}
-];
-var selected_id = 1;
-
-function render(){
-    var _articleTitle = '';
-    var _articleDesc = '';
-    if(mode === 'welcome'){
-        _articleTitle = 'Welcome';
-        _articleDesc = 'Hello, WEB';
-    } else if(mode === 'read') {
-        var i = 0;
-        while(i < contents.length) {
-            if(selected_id === contents[i].id){
-                _articleTitle = contents[i].title;
-                _articleDesc = contents[i].desc;
-                break;
+class App {
+    state = {
+        mode:'read',
+        contents:[
+            {id:1, title:'html', desc:'HTML is ...'},
+            {id:2, title:'css', desc:'CSS is ...'},
+            {id:3, title:'javascript', desc:'JavaScript is ...'}
+        ], 
+        selected_id:1
+    }
+    setState(_state){
+        this.state = Object.assign(this.state, _state);
+        this.render();
+    }
+    render(){
+        var _articleTitle = '';
+        var _articleDesc = '';
+        if(this.state.mode === 'welcome'){
+            _articleTitle = 'Welcome';
+            _articleDesc = 'Hello, WEB';
+        } else if(this.state.mode === 'read') {
+            var i = 0;
+            while(i < this.state.contents.length) {
+                if(this.state.selected_id === this.state.contents[i].id){
+                    _articleTitle = this.state.contents[i].title;
+                    _articleDesc = this.state.contents[i].desc;
+                    break;
+                }
+                i = i + 1;
             }
-            i = i + 1;
-        }
-            
-    } 
-    document.querySelector('#app').innerHTML = (
-        headerTag('WEB', 'World Wide Web!!!')+
-        navTag(contents)+
-        articleTag(_articleTitle, _articleDesc)
-    );
+                
+        } 
+        document.querySelector('#app').innerHTML = (
+            headerTag('WEB', 'World Wide Web!!!')+
+            navTag(this.state.contents)+
+            articleTag(_articleTitle, _articleDesc)
+        );
+    }
 }
-render();
+
+var app = new App();
+app.render();
 </script>
-
-        
-
-        
-
     </body>
 </html>
