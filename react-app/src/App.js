@@ -6,7 +6,12 @@ class Subject extends Component{
   render(){
     return (
       <header>
-        <h1><a href="/">{this.props.title}</a></h1>
+        <h1><a onClick={
+          function(_event){
+            _event.preventDefault();
+            this.props.onChangePage();
+          }.bind(this)
+        } href="/">{this.props.title}</a></h1>
         {this.props.sub}
       </header>
     )
@@ -62,8 +67,10 @@ class App extends Component{
     }
     return (
       <div className="App">
-        {/* <Subject title="WEB" sub="World!!"></Subject> */}
-        <header>
+        <Subject title="WEB" sub="World!!" onChangePage={function(){
+          this.setState({mode:'welcome'});  
+        }.bind(this)}></Subject>
+        {/* <header>
           <h1><a onClick={
             function(_event){
               console.log(this);
@@ -73,7 +80,7 @@ class App extends Component{
             }.bind(this)
           } href="/">WEB</a></h1>
           World!!
-        </header>
+        </header> */}
         <TOC data={this.state.contents}></TOC>
         <Content title={_aTitle} desc={_aDesc}></Content>
       </div>
