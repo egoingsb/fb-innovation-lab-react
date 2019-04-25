@@ -1,0 +1,24 @@
+<html>
+    <body>
+        <h1>Object factory</h1>
+        <script>
+            var p1 = {
+                name:'egonig',
+                first:10,
+                second:20,
+                sum:function(){
+                    return this.first + this.second;
+                }
+            }
+            var p2 = {
+                name:'lee',
+                first:50,
+                second:50,
+                sum:function(){
+                    return this.first + this.second;
+                }
+            }
+            console.log(p1.sum(), p2.sum());
+        </script>
+    </body>
+</html>
