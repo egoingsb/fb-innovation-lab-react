@@ -2,6 +2,7 @@
     <body>
         <h1>Object factory</h1>
         <script>
+            /* 가내수공업
             var p1 = {
                 name:'egonig',
                 first:10,
@@ -18,7 +19,41 @@
                     return this.first + this.second;
                 }
             }
-            console.log(p1.sum(), p2.sum());
+            */
+
+    /* 객체의 공장 - constructor function 
+    function Person(_name, _first, _second){
+        this.name = _name;
+        this.first = _first;
+        this.second = _second;
+        // this.sum = function(){
+        //     return this.first + this.second;
+        // }
+    }
+    Person.prototype.sum = function(){
+        return this.first + this.second;
+    }
+    */
+            
+
+    
+class Person{
+    constructor(_name, _first, _second){
+        this.name = _name;
+        this.first = _first;
+        this.second = _second;
+        // this.sum = function(){
+        //     return this.first + this.second;
+        // } 
+    }
+    sum(){
+        return this.first + this.second;
+    } 
+}
+
+var p1 = new Person('egoing', 10, 20);
+var p2 = new Person('lee', 50, 50);
+console.log(p1.sum(), p2.sum());
         </script>
     </body>
 </html>
