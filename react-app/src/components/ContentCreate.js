@@ -6,7 +6,10 @@ class ContentCreate extends Component{
         <form action="/create_process" method="post" onSubmit={
             function(event){
                 event.preventDefault();
-                // this.props.onSubmitCreate(title, desc);
+                this.props.onSubmitCreate(
+                    event.target.title.value, 
+                    event.target.desc.value
+                );
             }.bind(this)
         }>
           <p>

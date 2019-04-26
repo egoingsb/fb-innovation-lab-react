@@ -34,6 +34,7 @@ class ContentRead extends Component{
 }
 
 class App extends Component{
+  max_id = 3;
   state = {
     contents:[
       {id:1, title:'HTML', desc:'HTML is ...'},
@@ -70,6 +71,13 @@ class App extends Component{
           // {id:마지막 id 값 + 1, title:_title, desc:_desc}
           // 추가한다. 
           console.log(_title, _desc);
+          this.max_id = this.max_id + 1;
+          this.state.contents.push({
+            id:this.max_id,
+            title:_title,
+            desc:_desc
+          })
+          this.setState({contents:this.state.contents});
         }.bind(this)
       }></ContentCreate>
     }
