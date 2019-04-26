@@ -118,6 +118,8 @@ class App extends Component{
         i = i + 1;
       }
       _content = <ContentRead title={_aTitle} desc={_aDesc}></ContentRead>
+    } else if(this.state.mode === 'create'){
+      _content = <ContentCreate></ContentCreate>
     }
     return (
       <div className="App">
