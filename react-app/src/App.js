@@ -129,17 +129,6 @@ class App extends Component{
         <Subject title="WEB" sub="World!!" onChangePage={function(){
           this.setState({mode:'welcome'});  
         }.bind(this)}></Subject>
-        {/* <header>
-          <h1><a onClick={
-            function(_event){
-              console.log(this);
-              // this.state.mode = 'welcome';
-              this.setState({mode:'welcome'});
-              _event.preventDefault();
-            }.bind(this)
-          } href="/">WEB</a></h1>
-          World!!
-        </header> */}
         <TOC onChangePage={
           function(id){
             this.setState({
@@ -149,6 +138,11 @@ class App extends Component{
             // todo : 선택한 글 본문 표현
           }.bind(this)
         } data={this.state.contents}></TOC>
+        <ul>
+          <li><a href="/create">create</a></li>
+          <li><a href="/update">update</a></li>
+          <li><input type="button" value="delete"></input></li>
+          </ul>
         <Content title={_aTitle} desc={_aDesc}></Content>
       </div>
     );  
