@@ -30,10 +30,10 @@ class TOC extends Component{
         <li key={con[i].id}>
           <a  href=""
               onClick={
-                function(event){
+                function(id, event){
                   event.preventDefault();
-                  this.props.onChangePage();
-                }.bind(this)
+                  this.props.onChangePage(id);
+                }.bind(this, con[i].id)
               }
           >
             {con[i].title}
@@ -68,9 +68,11 @@ class App extends Component{
   state = {
     contents:[
       {id:1, title:'HTML', desc:'HTML is ...'},
-      {id:2, title:'  ', desc:'CSS is ...'}
+      {id:2, title:'CSS', desc:'CSS is ...'},
+      {id:3, title:'JavaScript', desc:'JavaScript is ...'}
     ],
-    mode:'welcome'
+    mode:'read',
+    selected_id:2
   }
   render(){
     console.log('App render');
@@ -79,8 +81,19 @@ class App extends Component{
       _aTitle = 'Welcome';
       _aDesc = 'Hello, React';
     } else if(this.state.mode === 'read'){
-      _aTitle = 'HTML';
-      _aDesc = 'HTML is ...';
+      // contents의 목록에서 
+      //  id 값이 selected_id의 값과 같다면 
+      //  _aTitle 의 값을 그 목록의 타이틀 값으로 한다. 
+      var i = 0;
+      var con = this.state.contents;
+      while( i < con.length){
+        if(con[i].id === this.state.selected_id){
+          _aTitle = con[i].title;
+          _aDesc = con[i].desc;
+          break;
+        }
+        i = i + 1;
+      }
     }
     return (
       <div className="App">
@@ -99,8 +112,12 @@ class App extends Component{
           World!!
         </header> */}
         <TOC onChangePage={
-          function(){
-            this.setState({mode:'read'});
+          function(id){
+            debugger;
+            this.setState({
+              mode:'read',
+              selected_id:id
+            });
             // todo : 선택한 글 본문 표현
           }.bind(this)
         } data={this.state.contents}></TOC>
