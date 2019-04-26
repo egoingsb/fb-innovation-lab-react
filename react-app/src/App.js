@@ -81,7 +81,7 @@ class TOC extends Component{
   }
 }
 
-class Content extends Component{
+class ContentRead extends Component{
   render(){
     console.log('Content render');
     return (
@@ -106,13 +106,12 @@ class App extends Component{
   render(){
     console.log('App render');
     var _aTitle, _aDesc = '';
+    var _content = null;
     if(this.state.mode === 'welcome'){
       _aTitle = 'Welcome';
       _aDesc = 'Hello, React';
+      _content = <ContentRead title={_aTitle} desc={_aDesc}></ContentRead>
     } else if(this.state.mode === 'read'){
-      // contents의 목록에서 
-      //  id 값이 selected_id의 값과 같다면 
-      //  _aTitle 의 값을 그 목록의 타이틀 값으로 한다. 
       var i = 0;
       var con = this.state.contents;
       while( i < con.length){
@@ -123,6 +122,7 @@ class App extends Component{
         }
         i = i + 1;
       }
+      _content = <ContentRead title={_aTitle} desc={_aDesc}></ContentRead>
     }
     return (
       <div className="App">
@@ -150,7 +150,7 @@ class App extends Component{
           <li><a href="/update">update</a></li>
           <li><input type="button" value="delete"></input></li>
           </ul>
-        <Content title={_aTitle} desc={_aDesc}></Content>
+        {_content}
       </div>
     );  
   }
