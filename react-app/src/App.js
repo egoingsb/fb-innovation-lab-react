@@ -45,20 +45,7 @@ class TOC extends Component{
     var con = this.props.data;
     var i = 0;
     while(i < con.length){
-      tags.push(
-        // <li key={con[i].id}>
-        //   <a  href=""
-        //       onClick={
-        //         function(id, event){
-        //           event.preventDefault();
-        //           this.props.onChangePage(id);
-        //         }.bind(this, con[i].id)
-        //       }
-        //   >
-        //     {con[i].title}
-        //   </a>
-        // </li>
-        <Item 
+      tags.push(<Item 
           onChangePage={
             function(id){
               this.props.onChangePage(id);
@@ -80,7 +67,15 @@ class TOC extends Component{
     );
   }
 }
-
+class ContentCreate extends Component{
+  render(){
+    return (
+      <form>
+        hi
+      </form>
+    );
+  } 
+}
 class ContentRead extends Component{
   render(){
     console.log('Content render');
