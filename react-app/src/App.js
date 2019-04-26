@@ -64,7 +64,14 @@ class App extends Component{
       }
       _content = <ContentRead title={_aTitle} desc={_aDesc}></ContentRead>
     } else if(this.state.mode === 'create'){
-      _content = <ContentCreate></ContentCreate>
+      _content = <ContentCreate onSubmitCreate={
+        function(_title, _desc){
+          // todo : this.state.contents 값에 
+          // {id:마지막 id 값 + 1, title:_title, desc:_desc}
+          // 추가한다. 
+          console.log(_title, _desc);
+        }.bind(this)
+      }></ContentCreate>
     }
     return (
       <div className="App">
