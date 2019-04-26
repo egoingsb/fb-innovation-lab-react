@@ -1,6 +1,7 @@
 import React,{Component} from 'react';
 import logo from './logo.svg';
 import TOC from "./components/TOC";
+import ContentCreate from "./components/ContentCreate";
 import './App.css';
 
 class Subject extends Component{
@@ -20,35 +21,6 @@ class Subject extends Component{
   }
 }
 
-class Item extends Component{
-  render(){
-    return (
-      <li>
-        <a 
-          onClick={
-            function(event){
-              event.preventDefault();
-              this.props.onChangePage(this.props.id);
-            }.bind(this)
-          }
-          href={this.props.id+'.html'}>
-          {this.props.title}
-        </a>
-      </li>
-    );
-  }
-}
-
-
-class ContentCreate extends Component{
-  render(){
-    return (
-      <form>
-        hi
-      </form>
-    );
-  } 
-}
 class ContentRead extends Component{
   render(){
     console.log('Content render');
