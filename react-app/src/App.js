@@ -4,6 +4,7 @@ import './App.css';
 
 class Subject extends Component{
   render(){
+    console.log('Subject render');
     return (
       <header>
         <h1><a onClick={
@@ -20,11 +21,25 @@ class Subject extends Component{
 
 class TOC extends Component{
   render(){
+    console.log('TOC render');
     var tags = [];
     var con = this.props.data;
     var i = 0;
     while(i < con.length){
-      tags.push(<li key={con[i].id}><a href="">{con[i].title}</a></li>);
+      tags.push(
+        <li key={con[i].id}>
+          <a  href=""
+              onClick={
+                function(event){
+                  event.preventDefault();
+                  this.props.onChangePage();
+                }.bind(this)
+              }
+          >
+            {con[i].title}
+          </a>
+        </li>
+      );
       i = i + 1;
     }
     return (
@@ -39,6 +54,7 @@ class TOC extends Component{
 
 class Content extends Component{
   render(){
+    console.log('Content render');
     return (
       <article>
         <h2>{this.props.title}</h2>
@@ -54,9 +70,10 @@ class App extends Component{
       {id:1, title:'HTML', desc:'HTML is ...'},
       {id:2, title:'  ', desc:'CSS is ...'}
     ],
-    mode:'read'
+    mode:'welcome'
   }
   render(){
+    console.log('App render');
     var _aTitle, _aDesc = '';
     if(this.state.mode === 'welcome'){
       _aTitle = 'Welcome';
@@ -81,7 +98,12 @@ class App extends Component{
           } href="/">WEB</a></h1>
           World!!
         </header> */}
-        <TOC data={this.state.contents}></TOC>
+        <TOC onChangePage={
+          function(){
+            this.setState({mode:'read'});
+            // todo : 선택한 글 본문 표현
+          }.bind(this)
+        } data={this.state.contents}></TOC>
         <Content title={_aTitle} desc={_aDesc}></Content>
       </div>
     );  
