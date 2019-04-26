@@ -19,6 +19,25 @@ class Subject extends Component{
   }
 }
 
+class Item extends Component{
+  render(){
+    return (
+      <li>
+        <a 
+          onClick={
+            function(event){
+              event.preventDefault();
+              this.props.onChangePage(this.props.id);
+            }.bind(this)
+          }
+          href={this.props.id+'.html'}>
+          {this.props.title}
+        </a>
+      </li>
+    );
+  }
+}
+
 class TOC extends Component{
   render(){
     console.log('TOC render');
@@ -27,18 +46,28 @@ class TOC extends Component{
     var i = 0;
     while(i < con.length){
       tags.push(
-        <li key={con[i].id}>
-          <a  href=""
-              onClick={
-                function(id, event){
-                  event.preventDefault();
-                  this.props.onChangePage(id);
-                }.bind(this, con[i].id)
-              }
-          >
-            {con[i].title}
-          </a>
-        </li>
+        // <li key={con[i].id}>
+        //   <a  href=""
+        //       onClick={
+        //         function(id, event){
+        //           event.preventDefault();
+        //           this.props.onChangePage(id);
+        //         }.bind(this, con[i].id)
+        //       }
+        //   >
+        //     {con[i].title}
+        //   </a>
+        // </li>
+        <Item 
+          onChangePage={
+            function(id){
+              this.props.onChangePage(id);
+            }.bind(this)
+          }
+          key={con[i].id} 
+          id={con[i].id} 
+          title={con[i].title}>
+        </Item>
       );
       i = i + 1;
     }
@@ -113,7 +142,6 @@ class App extends Component{
         </header> */}
         <TOC onChangePage={
           function(id){
-            debugger;
             this.setState({
               mode:'read',
               selected_id:id
