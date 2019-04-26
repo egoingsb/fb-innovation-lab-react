@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
 import logo from './logo.svg';
+import TOC from "./components/TOC";
 import './App.css';
 
 class Subject extends Component{
@@ -38,35 +39,7 @@ class Item extends Component{
   }
 }
 
-class TOC extends Component{
-  render(){
-    console.log('TOC render');
-    var tags = [];
-    var con = this.props.data;
-    var i = 0;
-    while(i < con.length){
-      tags.push(<Item 
-          onChangePage={
-            function(id){
-              this.props.onChangePage(id);
-            }.bind(this)
-          }
-          key={con[i].id} 
-          id={con[i].id} 
-          title={con[i].title}>
-        </Item>
-      );
-      i = i + 1;
-    }
-    return (
-      <nav>
-        <ol>
-          {tags}
-        </ol>
-      </nav>
-    );
-  }
-}
+
 class ContentCreate extends Component{
   render(){
     return (
